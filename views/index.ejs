@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chatbot</title>
+</head>
+<body>
+    <h1>Welcome to the Chatbot</h1>
+    <p>This is a simple chatbot interface.</p>
+
+    <form action="/chatbot" method="POST" autocomplete="off" >
+        <input type="text" name="message" id="userInput" placeholder="Type your message here...">
+        <button type="submit">Send</button>
+    </form>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+        <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <div id="chatHistory">
+        <% if (typeof chatHistory !== 'undefined' && chatHistory.length > 0) { %>
+            <ul>
+                <% chatHistory.forEach(function(entry) { %>
+                    <li><strong>You:</strong> <%= entry.user %></li>
+                    <li><strong>Bot:</strong> <%= entry.bot %></li>
+                <% }); %>
+            </ul>
+        <% } %>
+    </div>
+</body>
+</html>
